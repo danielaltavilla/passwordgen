@@ -3,7 +3,6 @@ function generatePassword() {
 
     var approvedChars = '';
     var password = '';
-    console.log("Button working as intended.") //testing purposes only
 
 // step 1. Prompt user for password gen
 
@@ -13,10 +12,6 @@ if (promptLength <8 || promptLength >128) {
     window.alert("You need to provide a length between 8-128 characters!");
     return generatePassword();
 }
-
-  else { 
-      console.log(promptLength);
-  }
 
   var uppercaseChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
   var lowercaseChars = 'abcdefghijklmnopqrstuvwxyz'
@@ -44,16 +39,16 @@ if (promptLength <8 || promptLength >128) {
       approvedChars += specialChars;
   }
 
+  window.alert("your password will include any of these characters: " + approvedChars);
+
 
 // step 3. generate password based on criteria 
   for(var i=0; i <= promptLength; i++) {
-      password += Math.floor(Math.random() * approvedChars.length);
+      password += approvedChars[Math.floor(Math.random() * approvedChars.length)];
   }
 
 
-
-
-// step 4. Display the generated password on page/in an alert.
+  // step 4. Display the generated password on page/in an alert.
     return password;
 }
 
