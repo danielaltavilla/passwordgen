@@ -1,10 +1,13 @@
 // Assignment code here
 function generatePassword() {
+
+    var approvedChars = '';
+    var password = '';
     console.log("Button working as intended.") //testing purposes only
 
 // step 1. Prompt user for password gen
 
-var promptLength = window.prompt("How long is the password? Please select between 8-128 characters.");
+var promptLength = parseInt(window.prompt("How long is the password? Please select between 8-128 characters."));
 
 if (promptLength <8 || promptLength >128) {
     window.alert("You need to provide a length between 8-128 characters!");
@@ -15,32 +18,43 @@ if (promptLength <8 || promptLength >128) {
       console.log(promptLength);
   }
 
-  var chars = [
-      "uppercase letters",
+  var uppercaseChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+  var lowercaseChars = 'abcdefghijklmnopqrstuvwxyz'
+  var numbers = '1234567890'
+  var specialChars = '!@#$%^&*()'
 
-      "lowercase letters",
+  var wantsUppercase = window.confirm("Would you like uppercase characters?");
+  var wantsLowercase = window.confirm("Would you like lowercase characters?");
+  var wantsNumbers = window.confirm("Would you like numbers?");
+  var wantsSpecials = window.confirm("Would you like special characters?");
 
-      "numbers",
+  if (wantsUppercase === true) {
+      approvedChars += uppercaseChars;
+  } 
 
-      "special chars",
-  ]
-   
-  for (let i = 0; i < 4; i++) {
-      var charsConfirm = window.confirm("Will this password include " + chars[i] + "?");
-
-      if (charsConfirm) {
-
-      }
+  if (wantsLowercase === true) {
+      approvedChars += lowercaseChars;
   }
-//      1b. Confirm whether upper,lower,numeric,and/or special char
 
-// step 2. Validate the input 
+  if (wantsNumbers === true) {
+      approvedChars += numbers;
+  }
+
+  if (wantsSpecials === true) {
+      approvedChars += specialChars;
+  }
+
+
 // step 3. generate password based on criteria 
+  for(var i=0; i <= promptLength; i++) {
+      password += Math.floor(Math.random() * approvedChars.length);
+  }
+
 
 
 
 // step 4. Display the generated password on page/in an alert.
-    return "generated password";
+    return password;
 }
 
 
